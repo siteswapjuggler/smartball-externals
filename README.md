@@ -1,4 +1,4 @@
-# Smartball projetc - max/msp
+# Smartball project - max/msp
 
 This repository contains two Smartball UDP external for max-msp.
 
