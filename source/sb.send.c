@@ -30,7 +30,10 @@ void ext_main(void *r)
 	// ARGS MESSAGES METHODS
 	class_addmethod(c, (method)sbSend_infrared,    "ir",		 A_GIMME, 0);
 	class_addmethod(c, (method)sbSend_vibration,   "vibe",		 A_GIMME, 0);
-	class_addmethod(c, (method)sbSend_color,	   "color",		 A_GIMME, 0);
+	class_addmethod(c, (method)sbSend_master,	   "master",	 A_GIMME, 0);
+	class_addmethod(c, (method)sbSend_strobe,	   "strobe",	 A_GIMME, 0);
+	class_addmethod(c, (method)sbSend_color1,	   "color",		 A_GIMME, 0);
+	class_addmethod(c, (method)sbSend_color2,	   "background", A_GIMME, 0);
 	class_addmethod(c, (method)sbSend_stream,	   "stream",	 A_GIMME, 0);
 	class_addmethod(c, (method)sbSend_setImu,	   "setImu",	 A_GIMME, 0);
 	class_addmethod(c, (method)sbSend_accRange,    "accRange",	 A_GIMME, 0);
@@ -142,10 +145,42 @@ void sbSend_saveFactory(t_sbSend *x) {
 	sbSend_send(x, SAVE_FACTORY, 0, NULL);
 }
 
+//---------------------------------------------------------------------------------------
+
+void sbSend_master(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
+{
+	if (atom_gettype(argv) == A_LONG) {
+		long value = atom_getlong(argv);
+		value = value < 0 ? 0 : value;
+		value = value > 255 ? 255 : value;
+		t_uint8 data[] = { value };
+		sbSend_send(x, CMD_MST, 1, data);
+	}
+	else {
+		object_warn((t_object*)x, "Master argument not understood");
+	}
+}
+
+void sbSend_strobe(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
+{
+	if (atom_gettype(argv) == A_LONG) {
+		long value = atom_getlong(argv);
+		value = value < 0 ? 0 : value;
+		value = value > 255 ? 255 : value;
+		t_uint8 data[] = { value };
+		sbSend_send(x, CMD_STB, 1, data);
+	}
+	else {
+		object_warn((t_object*)x, "Strobe argument not understood");
+	}
+}
+
 void sbSend_infrared(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
 {
 	if (atom_gettype(argv) == A_LONG) {
-		long value = atom_getlong(argv) & 1023;
+		long value = atom_getlong(argv);
+		value = value < 0 ? 0 : value;
+		value = value > 1023 ? 1023: value;
 		t_uint8 data[] = { (value >> 8) & 255,value & 255 };
 		sbSend_send(x, CMD_IRL, 2, data);
 	}
@@ -157,7 +192,9 @@ void sbSend_infrared(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
 void sbSend_vibration(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
 {
 	if (atom_gettype(argv) == A_LONG) {
-		long value = atom_getlong(argv) & 1023;
+		long value = atom_getlong(argv);
+		value = value < 0 ? 0 : value;
+		value = value > 1023 ? 1023 : value;
 		t_uint8 data[] = { (value >> 8) & 255,value & 255 };
 		sbSend_send(x, CMD_MOT, 2, data);
 	}
@@ -166,8 +203,21 @@ void sbSend_vibration(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
 	}
 }
 
-void sbSend_color(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
+//---------------------------------------------------------------------------------------
+
+void sbSend_color1(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
 {
+	sbSend_color(x, s, argc, argv, CMD_COLOR1);
+}
+
+void sbSend_color2(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
+{
+	sbSend_color(x, s, argc, argv, CMD_COLOR2);
+}
+
+void sbSend_color(t_sbSend *x, t_symbol *s, long argc, t_atom *argv, enum sb_cmd c)
+{
+	long value;
 	t_atom *ap; 
 	t_uint8 *data;
 	t_uint16 i;
@@ -182,25 +232,31 @@ void sbSend_color(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
 	for (i = 0, ap = argv; i < l; i++, ap++) {
 		switch (atom_gettype(ap)) {
 		case A_LONG:
-			data[i] = atom_getlong(ap) & 255;
+			value = atom_getlong(ap);
 			break;
 		case A_FLOAT:
-			data[i] = (int)(atom_getfloat(ap)*255.) & 255;
+			value = (long)atom_getfloat(ap)*255.;
 			break;
 		default:
-			data[i] = 0;
+			value = 0;
 			break;
 		}
+		value = value < 0 ? 0 : value;
+		value = value > 255 ? 255 : value;
+		data[i] = (t_uint8)value;
 	}
 
-	sbSend_send(x, CMD_COLOR, l, data);
+	sbSend_send(x, c, l, data);
 
 END:
 	sysmem_freeptr(data);
 }
 
+//---------------------------------------------------------------------------------------
+
 void sbSend_stream(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
 {
+	long value;
 	t_atom *ap;
 	t_uint8 *data;
 	t_uint16 i;
@@ -215,15 +271,18 @@ void sbSend_stream(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
 	for (i = 0, ap = argv; i < l; i++, ap++) {
 		switch (atom_gettype(ap)) {
 		case A_LONG:
-			data[i] = atom_getlong(ap) & 255;
+			value = atom_getlong(ap);
 			break;
 		case A_FLOAT:
-			data[i] = (int)(atom_getfloat(ap)*255.) & 255;
+			value = (long)atom_getfloat(ap)*255.;
 			break;
 		default:
-			data[i] = 0;
+			value = 0;
 			break;
 		}
+		value = value < 0 ? 0 : value;
+		value = value > 255 ? 255 : value;
+		data[i] = (t_uint8)value;
 	}
 
 	sbSend_send(x, CMD_STREAM, l, data);
@@ -231,6 +290,8 @@ void sbSend_stream(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
 END:
 	sysmem_freeptr(data);
 }
+
+//---------------------------------------------------------------------------------------
 
 void sbSend_setImu(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
 {
@@ -270,7 +331,7 @@ void sbSend_gyrRange(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
 
 void sbSend_setFactory(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
 {
-	if (argc < 3) {
+	if (argc == 3) {
 		if (atom_gettype(argv) == A_LONG && atom_gettype(argv + 1) == A_LONG && atom_gettype(argv + 2) == A_LONG) {
 			long sn = atom_getlong(argv);						// Serial number
 			long df = atom_getlong(argv + 1);					// Device flag

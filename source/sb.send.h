@@ -48,7 +48,11 @@ void sbSend_saveFactory(t_sbSend*);
 
 void sbSend_infrared(t_sbSend*, t_symbol*, long, t_atom*);
 void sbSend_vibration(t_sbSend*, t_symbol*, long, t_atom*);
-void sbSend_color(t_sbSend*, t_symbol*, long, t_atom*);
+void sbSend_color1(t_sbSend*, t_symbol*, long, t_atom*);
+void sbSend_color2(t_sbSend*, t_symbol*, long, t_atom*);
+void sbSend_color(t_sbSend*, t_symbol*, long, t_atom*, enum sb_cmd);
+void sbSend_strobe(t_sbSend*, t_symbol*, long, t_atom*);
+void sbSend_master(t_sbSend*, t_symbol*, long, t_atom*);
 void sbSend_stream(t_sbSend*, t_symbol*, long, t_atom*);
 void sbSend_setImu(t_sbSend*, t_symbol*, long, t_atom*);
 void sbSend_accRange(t_sbSend*, t_symbol*, long, t_atom*);

@@ -33,13 +33,16 @@ enum sb_cmd {
 	CMD_SLEEP	 = 0x03,
 	CMD_FACTORY  = 0x10,
 	SAVE_FACTORY = 0x11,
-	CMD_COLOR    = 0x20,
+	CMD_COLOR1   = 0x20,
 	CMD_STREAM   = 0x21,
+	CMD_COLOR2	 = 0x22,
 	CMD_IMU      = 0x30,
 	SAVE_IMU	 = 0x31,
 	CMD_ACCRANGE = 0x32,
 	CMD_GYRRANGE = 0x33,
 	CMD_IRL      = 0x40,
-	CMD_MOT      = 0x50
+	CMD_MOT      = 0x50,
+	CMD_STB		 = 0x60,
+	CMD_MST		 = 0x70
 };
 

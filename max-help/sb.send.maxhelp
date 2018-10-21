@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ -1731.0, 157.0, 595.0, 500.0 ],
+		"rect" : [ 481.0, 86.0, 589.0, 500.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,6 +40,296 @@
 		"showontab" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-4",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patcher" : 					{
+						"fileversion" : 1,
+						"appversion" : 						{
+							"major" : 7,
+							"minor" : 3,
+							"revision" : 5,
+							"architecture" : "x86",
+							"modernui" : 1
+						}
+,
+						"rect" : [ 0.0, 26.0, 589.0, 474.0 ],
+						"bglocked" : 0,
+						"openinpresentation" : 0,
+						"default_fontsize" : 12.0,
+						"default_fontface" : 0,
+						"default_fontname" : "Arial",
+						"gridonopen" : 1,
+						"gridsize" : [ 15.0, 15.0 ],
+						"gridsnaponopen" : 1,
+						"objectsnaponopen" : 1,
+						"statusbarvisible" : 2,
+						"toolbarvisible" : 1,
+						"lefttoolbarpinned" : 0,
+						"toptoolbarpinned" : 0,
+						"righttoolbarpinned" : 0,
+						"bottomtoolbarpinned" : 0,
+						"toolbars_unpinned_last_save" : 0,
+						"tallnewobj" : 0,
+						"boxanimatetime" : 200,
+						"enablehscroll" : 1,
+						"enablevscroll" : 1,
+						"devicewidth" : 0.0,
+						"description" : "",
+						"digest" : "",
+						"tags" : "",
+						"style" : "",
+						"subpatcher_template" : "",
+						"showontab" : 1,
+						"boxes" : [ 							{
+								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.0,
+									"bubbletextmargin" : 10,
+									"id" : "obj-22",
+									"linecount" : 3,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 243.12793, 399.0, 218.0, 62.0 ],
+									"style" : "",
+									"text" : "The strobe effect allow high speed strobe with Smartball internal time management."
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontface" : 1,
+									"fontsize" : 12.0,
+									"id" : "obj-20",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 183.12793, 365.5, 47.0, 20.0 ],
+									"style" : "",
+									"text" : "strobe",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-21",
+									"knobcolor" : [ 0.439216, 0.74902, 0.254902, 0.8 ],
+									"maxclass" : "slider",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 172.12793, 364.5, 143.0, 22.0 ],
+									"size" : 256.0,
+									"style" : ""
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontface" : 1,
+									"fontsize" : 12.0,
+									"id" : "obj-19",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 28.0, 366.0, 50.0, 20.0 ],
+									"style" : "",
+									"text" : "master",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.0,
+									"bubbletextmargin" : 10,
+									"id" : "obj-16",
+									"linecount" : 3,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 243.12793, 271.0, 243.0, 62.0 ],
+									"style" : "",
+									"text" : "Background color set the color used during strobe effect off cycle. Multicolor background are also possible."
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-10",
+									"knobcolor" : [ 0.92549, 0.364706, 0.341176, 0.8 ],
+									"maxclass" : "slider",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 15.0, 364.5, 143.0, 22.0 ],
+									"size" : 256.0,
+									"style" : ""
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-9",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 439.0, 143.0, 22.0 ],
+									"style" : "",
+									"text" : "sb.send 239.0.0.50 8000"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-5",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 172.12793, 393.0, 61.0, 22.0 ],
+									"style" : "",
+									"text" : "strobe $1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-8",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 15.0, 393.0, 64.0, 22.0 ],
+									"style" : "",
+									"text" : "master $1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"border" : 0,
+									"filename" : "helpdetails.js",
+									"id" : "obj-6",
+									"ignoreclick" : 1,
+									"jsarguments" : [ "sb.send" ],
+									"maxclass" : "jsui",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 15.0, 15.0, 565.255859, 115.5 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"compatibility" : 1,
+									"id" : "obj-18",
+									"maxclass" : "swatch",
+									"numinlets" : 3,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "float" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 15.0, 148.0, 300.12793, 114.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-11",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 15.0, 282.0, 123.0, 22.0 ],
+									"style" : "",
+									"text" : "background $1 $2 $3"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-7",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 311.0, 143.0, 22.0 ],
+									"style" : "",
+									"text" : "sb.send 239.0.0.50 8000"
+								}
+
+							}
+ ],
+						"lines" : [ 							{
+								"patchline" : 								{
+									"destination" : [ "obj-8", 0 ],
+									"source" : [ "obj-10", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-7", 0 ],
+									"source" : [ "obj-11", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-11", 0 ],
+									"source" : [ "obj-18", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-5", 0 ],
+									"source" : [ "obj-21", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-9", 0 ],
+									"midpoints" : [ 181.62793, 424.0, 24.5, 424.0 ],
+									"source" : [ "obj-5", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-9", 0 ],
+									"source" : [ "obj-8", 0 ]
+								}
+
+							}
+ ]
+					}
+,
+					"patching_rect" : [ 160.833374, 9.0, 79.0, 22.0 ],
+					"presentation_rect" : [ 74.833374, 6.0, 0.0, 0.0 ],
+					"saved_object_attributes" : 					{
+						"description" : "",
+						"digest" : "",
+						"globalpatchername" : "",
+						"style" : "",
+						"tags" : ""
+					}
+,
+					"style" : "",
+					"text" : "p adavanced"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
 					"id" : "obj-5",
@@ -56,7 +346,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 595.0, 474.0 ],
+						"rect" : [ 0.0, 26.0, 589.0, 474.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -94,7 +384,7 @@
 						"bgfillcolor_proportion" : 0.39
 					}
 ,
-					"patching_rect" : [ 357.0, 9.0, 50.0, 22.0 ],
+					"patching_rect" : [ 448.0, 9.0, 50.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -125,7 +415,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 595.0, 474.0 ],
+						"rect" : [ 481.0, 112.0, 589.0, 474.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -161,9 +451,9 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 295.0, 240.5, 115.0, 22.0 ],
+									"patching_rect" : [ 295.0, 240.5, 111.0, 22.0 ],
 									"style" : "",
-									"text" : "loadmess set 1000."
+									"text" : "loadmess set 1000"
 								}
 
 							}
@@ -231,7 +521,7 @@
 											"modernui" : 1
 										}
 ,
-										"rect" : [ 0.0, 0.0, 640.0, 480.0 ],
+										"rect" : [ 67.0, 110.0, 640.0, 480.0 ],
 										"bglocked" : 0,
 										"openinpresentation" : 0,
 										"default_fontsize" : 12.0,
@@ -310,7 +600,7 @@
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 84.0, 126.0, 244.0, 22.0 ],
 													"style" : "",
-													"text" : "pak 0 0 0."
+													"text" : "pak 0 0 0"
 												}
 
 											}
@@ -521,9 +811,8 @@
 							}
 , 							{
 								"box" : 								{
-									"format" : 6,
 									"id" : "obj-13",
-									"maxclass" : "flonum",
+									"maxclass" : "number",
 									"maximum" : 1024.0,
 									"minimum" : 0.1,
 									"numinlets" : 1,
@@ -790,7 +1079,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 293.833374, 8.0, 54.0, 22.0 ],
+					"patching_rect" : [ 384.833374, 8.0, 54.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -820,7 +1109,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 595.0, 474.0 ],
+						"rect" : [ 0.0, 26.0, 589.0, 474.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1364,7 +1653,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 160.833374, 8.0, 71.0, 22.0 ],
+					"patching_rect" : [ 251.833374, 8.0, 71.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1394,7 +1683,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 595.0, 474.0 ],
+						"rect" : [ 0.0, 26.0, 589.0, 474.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1766,7 +2055,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 242.833374, 8.0, 40.0, 22.0 ],
+					"patching_rect" : [ 333.833374, 8.0, 40.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1796,7 +2085,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 595.0, 474.0 ],
+						"rect" : [ 0.0, 26.0, 589.0, 474.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2348,7 +2637,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 71.833374, 8.0, 78.0, 22.0 ],
+					"patching_rect" : [ 72.833374, 9.0, 78.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -2378,7 +2667,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ -1731.0, 183.0, 595.0, 474.0 ],
+						"rect" : [ 0.0, 26.0, 589.0, 474.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
