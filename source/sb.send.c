@@ -332,7 +332,7 @@ void sbSend_gyrRange(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
 void sbSend_setFactory(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
 {
 	if (argc == 3) {
-		if (atom_gettype(argv) == A_LONG && atom_gettype(argv + 1) == A_LONG && atom_gettype(argv + 2) == A_LONG) {
+		if (atom_gettype(argv) == A_LONG && atom_gettype(argv + 1) == A_LONG && atom_gettype(argv + 2) == A_FLOAT) {
 			long sn = atom_getlong(argv);						// Serial number
 			long df = atom_getlong(argv + 1);					// Device flag
 			long bs = (int)(atom_getfloat(argv + 2) * 10.);		// Battery scale

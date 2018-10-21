@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 481.0, 86.0, 589.0, 500.0 ],
+		"rect" : [ 250.0, 294.0, 596.0, 499.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -54,7 +54,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 589.0, 474.0 ],
+						"rect" : [ 0.0, 26.0, 596.0, 473.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -92,7 +92,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 243.12793, 399.0, 218.0, 62.0 ],
+									"patching_rect" : [ 243.12793, 399.0, 221.0, 62.0 ],
 									"style" : "",
 									"text" : "The strobe effect allow high speed strobe with Smartball internal time management."
 								}
@@ -153,7 +153,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 243.12793, 271.0, 243.0, 62.0 ],
+									"patching_rect" : [ 243.12793, 271.0, 246.0, 62.0 ],
 									"style" : "",
 									"text" : "Background color set the color used during strobe effect off cycle. Multicolor background are also possible."
 								}
@@ -313,8 +313,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 160.833374, 9.0, 79.0, 22.0 ],
-					"presentation_rect" : [ 74.833374, 6.0, 0.0, 0.0 ],
+					"patching_rect" : [ 67.833374, 7.0, 73.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -324,7 +323,7 @@
 					}
 ,
 					"style" : "",
-					"text" : "p adavanced"
+					"text" : "p advanced"
 				}
 
 			}
@@ -346,7 +345,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 589.0, 474.0 ],
+						"rect" : [ 0.0, 26.0, 596.0, 473.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -415,7 +414,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 481.0, 112.0, 589.0, 474.0 ],
+						"rect" : [ 250.0, 320.0, 596.0, 473.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -451,9 +450,9 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 295.0, 240.5, 111.0, 22.0 ],
+									"patching_rect" : [ 295.0, 240.5, 92.0, 22.0 ],
 									"style" : "",
-									"text" : "loadmess set 1000"
+									"text" : "loadmess 1000"
 								}
 
 							}
@@ -465,9 +464,9 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 217.5, 211.5, 91.0, 22.0 ],
+									"patching_rect" : [ 217.5, 240.5, 72.0, 22.0 ],
 									"style" : "",
-									"text" : "loadmess set 1"
+									"text" : "loadmess 1"
 								}
 
 							}
@@ -811,10 +810,11 @@
 							}
 , 							{
 								"box" : 								{
+									"format" : 6,
 									"id" : "obj-13",
-									"maxclass" : "number",
-									"maximum" : 1024.0,
-									"minimum" : 0.1,
+									"maxclass" : "flonum",
+									"maximum" : 1024,
+									"minimum" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
@@ -1109,7 +1109,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 589.0, 474.0 ],
+						"rect" : [ 0.0, 26.0, 596.0, 473.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1162,7 +1162,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 483.181793, 87.5, 89.946129, 36.0 ],
+									"patching_rect" : [ 483.181793, 87.5, 93.0, 36.0 ],
 									"style" : "",
 									"text" : "loadmess set 0 255 255"
 								}
@@ -1683,7 +1683,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 589.0, 474.0 ],
+						"rect" : [ 0.0, 26.0, 596.0, 473.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2085,7 +2085,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 589.0, 474.0 ],
+						"rect" : [ 0.0, 26.0, 596.0, 473.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2637,7 +2637,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 72.833374, 9.0, 78.0, 22.0 ],
+					"patching_rect" : [ 151.833374, 8.0, 78.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -2667,7 +2667,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 589.0, 474.0 ],
+						"rect" : [ 0.0, 26.0, 596.0, 473.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
