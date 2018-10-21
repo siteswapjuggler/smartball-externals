@@ -599,7 +599,7 @@
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 84.0, 126.0, 244.0, 22.0 ],
 													"style" : "",
-													"text" : "pak 0 0 0"
+													"text" : "pak 0 0 0."
 												}
 
 											}
@@ -639,7 +639,7 @@
 													"maxclass" : "inlet",
 													"numinlets" : 0,
 													"numoutlets" : 1,
-													"outlettype" : [ "int" ],
+													"outlettype" : [ "" ],
 													"patching_rect" : [ 196.5, 40.0, 30.0, 30.0 ],
 													"style" : ""
 												}
@@ -813,8 +813,8 @@
 									"format" : 6,
 									"id" : "obj-13",
 									"maxclass" : "flonum",
-									"maximum" : 1024,
-									"minimum" : 0,
+									"maximum" : 1024.0,
+									"minimum" : 0.0,
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
@@ -1025,8 +1025,18 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-33", 2 ],
+									"hidden" : 1,
+									"order" : 0,
+									"source" : [ "obj-2", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-67", 0 ],
 									"hidden" : 1,
+									"order" : 1,
 									"source" : [ "obj-2", 0 ]
 								}
 
@@ -1056,6 +1066,16 @@
 								"patchline" : 								{
 									"destination" : [ "obj-13", 0 ],
 									"hidden" : 1,
+									"order" : 1,
+									"source" : [ "obj-7", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-33", 3 ],
+									"hidden" : 1,
+									"order" : 0,
 									"source" : [ "obj-7", 0 ]
 								}
 
