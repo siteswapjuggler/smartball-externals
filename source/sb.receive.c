@@ -24,6 +24,7 @@ void ext_main(void *r)
 	c = class_new("sb.receive", (method)sbReceive_new, (method)sbReceive_free, sizeof(t_sbReceive), 0L, A_GIMME, 0); 	// class_new() loads our external's class into Max's memory so it can be used in a patch
 	class_register(CLASS_BOX, c);																						// register to CLASS_BOX type for max environment
 	sbReceive_class = c;
+	post("sb.receive v0.3 - 12.05.2019");
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -121,78 +122,99 @@ void sbReceive_receive(t_sbReceive *x) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-// PARSE MESSAGE | SOP [ID_MSB ID_LSB] CMD [LEN_MSB LEN_LSB] [DATA] CKS
+// PARSE MESSAGE | [ID_MSB ID_LSB] [SN_MSB SN_LSB] CMD [DATA]
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // SOP CMD MSB LSB IDMSB IDLSB
 
 void sbReceive_parse(t_sbReceive *x, t_uint8 *msg) {
-	t_uint16  length = (t_uint16)(msg[LEN_MSB_ADDR] << 8 | msg[LEN_LSB_ADDR]);
-	t_uint8   checksum = 0;
+	
+	t_uint8 index = 0;
+	t_uint8 imu_flag = 0;
+	t_atom  list[20];
 
-	for (int i = CMD_ADDR ; i < (DATA_ADDR + length); i++) {
-		checksum += msg[i];
-	}
+	// ADD SERIAL NUMBER
+	atom_setlong(list, (t_uint16)(msg[ID_MSB] << 8 | msg[ID_LSB]));
 
-	if (msg[SOP_ADDR] == SOP && checksum == msg[DATA_ADDR + length]) {
-		t_uint8 index = 0;
-		t_uint8 imu_flag = 0;
-		t_atom  list[20];
-
-		// ADD SERIAL NUMBER
-		atom_setlong(list, (t_uint16)(msg[ID_MSB] << 8 | msg[ID_LSB]));
-
-		// ADD DATE ACCORDING ON CMD ID
-		switch (msg[CMD_ADDR]) {
-		case CMD_PING:
-			atom_setsym(list+1, gensym("pong"));
-			outlet_list(x->outlet, NULL, 2, &list);
-			break;
-		case CMD_BAT:
-			atom_setsym(list+1, gensym("bat"));
-			atom_setfloat(list+2, (float)(t_int16)(msg[DATA_ADDR] << 8 | msg[DATA_ADDR + 1]) / 100.);
-			outlet_list(x->outlet, NULL, 3, &list);
-			break;
-		case CMD_IMU:
-			index = DATA_ADDR;
-			imu_flag = msg[index];
-			atom_setsym(list + 1, gensym("imu"));
-			if (imu_flag & 1) {
-				atom_setsym(list + 2, gensym("acc"));
-				atom_setfloat(list + 3, (float)(t_int16)(msg[index + 1] << 8 | msg[index + 2]) / 100.);
-				atom_setfloat(list + 4, (float)(t_int16)(msg[index + 3] << 8 | msg[index + 4]) / 100.);
-				atom_setfloat(list + 5, (float)(t_int16)(msg[index + 5] << 8 | msg[index + 6]) / 100.);
-				outlet_list(x->outlet, NULL, 6, &list);
-				index += 6;
-			}
-			if (imu_flag & 2) {
-				atom_setsym(list + 2, gensym("gyr"));
-				atom_setfloat(list + 3, (float)(t_int16)(msg[index + 1] << 8 | msg[index + 2]) / 100.);
-				atom_setfloat(list + 4, (float)(t_int16)(msg[index + 3] << 8 | msg[index + 4]) / 100.);
-				atom_setfloat(list + 5, (float)(t_int16)(msg[index + 5] << 8 | msg[index + 6]) / 100.);
-				outlet_list(x->outlet, NULL, 6, &list);
-				index += 6;
-			}
-			if (imu_flag & 4) {
-				atom_setsym(list + 2, gensym("mag"));
-				atom_setfloat(list + 3, (float)(t_int16)(msg[index + 1] << 8 | msg[index + 2]) / 100.);
-				atom_setfloat(list + 4, (float)(t_int16)(msg[index + 3] << 8 | msg[index + 4]) / 100.);
-				atom_setfloat(list + 5, (float)(t_int16)(msg[index + 5] << 8 | msg[index + 6]) / 100.);
-				outlet_list(x->outlet, NULL, 6, &list);
-				index += 6;
-			}
-			if (imu_flag & 8) {
-				atom_setsym(list + 2, gensym("tmp"));
-				atom_setfloat(list + 3, (float)(t_int16)(msg[index + 1] << 8 | msg[index + 2]) / 100.);
-				outlet_list(x->outlet, NULL, 4, &list);
-				index += 2;
-			}
-			break;
+	// ADD DATE ACCORDING ON CMD ID
+	switch (msg[CMD_ADDR]) {
+	case CMD_PING:
+		atom_setsym(list+1, gensym("pong"));
+		outlet_list(x->outlet, NULL, 2, &list);
+		break;
+	case CMD_BAT:
+		atom_setsym(list+1, gensym("bat"));
+		atom_setfloat(list+2, (float)(t_int16)(msg[DATA_ADDR] << 8 | msg[DATA_ADDR + 1]) / 100.);
+		outlet_list(x->outlet, NULL, 3, &list);
+		break;
+	case CMD_IMU:
+		index = DATA_ADDR;
+		imu_flag = msg[index];
+		atom_setsym(list + 1, gensym("imu"));
+		if (imu_flag & 1) {
+			atom_setsym(list + 2, gensym("acc"));
+			atom_setfloat(list + 3, (float)(t_int16)(msg[index + 1] << 8 | msg[index + 2]) / 100.);
+			atom_setfloat(list + 4, (float)(t_int16)(msg[index + 3] << 8 | msg[index + 4]) / 100.);
+			atom_setfloat(list + 5, (float)(t_int16)(msg[index + 5] << 8 | msg[index + 6]) / 100.);
+			outlet_list(x->outlet, NULL, 6, &list);
+			index += 6;
 		}
-	}
-	else {
-		object_warn((t_object*)x, "Invalid message");
-	}
+		if (imu_flag & 2) {
+			atom_setsym(list + 2, gensym("gyr"));
+			atom_setfloat(list + 3, (float)(t_int16)(msg[index + 1] << 8 | msg[index + 2]) / 100.);
+			atom_setfloat(list + 4, (float)(t_int16)(msg[index + 3] << 8 | msg[index + 4]) / 100.);
+			atom_setfloat(list + 5, (float)(t_int16)(msg[index + 5] << 8 | msg[index + 6]) / 100.);
+			outlet_list(x->outlet, NULL, 6, &list);
+			index += 6;
+		}
+		if (imu_flag & 4) {
+			atom_setsym(list + 2, gensym("mag"));
+			atom_setfloat(list + 3, (float)(t_int16)(msg[index + 1] << 8 | msg[index + 2]) / 100.);
+			atom_setfloat(list + 4, (float)(t_int16)(msg[index + 3] << 8 | msg[index + 4]) / 100.);
+			atom_setfloat(list + 5, (float)(t_int16)(msg[index + 5] << 8 | msg[index + 6]) / 100.);
+			outlet_list(x->outlet, NULL, 6, &list);
+			index += 6;
+		}
+		if (imu_flag & 8) {
+			atom_setsym(list + 2, gensym("tmp"));
+			atom_setfloat(list + 3, (float)(t_int16)(msg[index + 1] << 8 | msg[index + 2]) / 100.);
+			outlet_list(x->outlet, NULL, 4, &list);
+			index += 2;
+		}
+		if (imu_flag & 16) {
+			atom_setsym(list + 2, gensym("vec"));
+			atom_setfloat(list + 3, (float)(t_int16)(msg[index + 1] << 8 | msg[index + 2]) / 100.);
+			atom_setfloat(list + 4, (float)(t_int16)(msg[index + 3] << 8 | msg[index + 4]) / 100.);
+			atom_setfloat(list + 5, (float)(t_int16)(msg[index + 5] << 8 | msg[index + 6]) / 100.);
+			outlet_list(x->outlet, NULL, 6, &list);
+			index += 6;
+		}
+		if (imu_flag & 32) {
+			atom_setsym(list + 2, gensym("qua"));
+			atom_setfloat(list + 3, (float)(t_int16)(msg[index + 1] << 8 | msg[index + 2]) / 100.);
+			atom_setfloat(list + 4, (float)(t_int16)(msg[index + 3] << 8 | msg[index + 4]) / 100.);
+			atom_setfloat(list + 5, (float)(t_int16)(msg[index + 5] << 8 | msg[index + 6]) / 100.);
+			outlet_list(x->outlet, NULL, 6, &list);
+			index += 6;
+		}
+		if (imu_flag & 64) {
+			atom_setsym(list + 2, gensym("wld"));
+			atom_setfloat(list + 3, (float)(t_int16)(msg[index + 1] << 8 | msg[index + 2]) / 100.);
+			atom_setfloat(list + 4, (float)(t_int16)(msg[index + 3] << 8 | msg[index + 4]) / 100.);
+			atom_setfloat(list + 5, (float)(t_int16)(msg[index + 5] << 8 | msg[index + 6]) / 100.);
+			outlet_list(x->outlet, NULL, 6, &list);
+			index += 6;
+		}
+		if (imu_flag & 128) {
+			atom_setsym(list + 2, gensym("sta"));
+			atom_setfloat(list + 3, (float)(t_int16)(msg[index + 1] << 8 | msg[index + 2]) / 100.);
+			atom_setfloat(list + 4, (float)(t_int16)(msg[index + 3] << 8 | msg[index + 4]) / 100.);
+			atom_setfloat(list + 5, (float)(t_int16)(msg[index + 5] << 8 | msg[index + 6]) / 100.);
+			outlet_list(x->outlet, NULL, 6, &list);
+			index += 6;
+		}
+		break;
+		}
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
