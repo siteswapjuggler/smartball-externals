@@ -24,7 +24,7 @@ void ext_main(void *r)
 	c = class_new("sb.receive", (method)sbReceive_new, (method)sbReceive_free, sizeof(t_sbReceive), 0L, A_GIMME, 0); 	// class_new() loads our external's class into Max's memory so it can be used in a patch
 	class_register(CLASS_BOX, c);																						// register to CLASS_BOX type for max environment
 	sbReceive_class = c;
-	post("sb.receive v0.3 - 12.05.2019");
+	post("sb.receive v0.31 - 19.05.2019");
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -191,11 +191,12 @@ void sbReceive_parse(t_sbReceive *x, t_uint8 *msg) {
 		}
 		if (imu_flag & 32) {
 			atom_setsym(list + 2, gensym("qua"));
-			atom_setfloat(list + 3, (float)(t_int16)(msg[index + 1] << 8 | msg[index + 2]) / 100.);
-			atom_setfloat(list + 4, (float)(t_int16)(msg[index + 3] << 8 | msg[index + 4]) / 100.);
-			atom_setfloat(list + 5, (float)(t_int16)(msg[index + 5] << 8 | msg[index + 6]) / 100.);
-			outlet_list(x->outlet, NULL, 6, &list);
-			index += 6;
+			atom_setfloat(list + 3, (float)(t_int16)(msg[index + 1] << 8 | msg[index + 2]) / 10000.);
+			atom_setfloat(list + 4, (float)(t_int16)(msg[index + 3] << 8 | msg[index + 4]) / 10000.);
+			atom_setfloat(list + 5, (float)(t_int16)(msg[index + 5] << 8 | msg[index + 6]) / 10000.);
+			atom_setfloat(list + 6, (float)(t_int16)(msg[index + 7] << 8 | msg[index + 8]) / 10000.); 
+			outlet_list(x->outlet, NULL, 7, &list);
+			index += 8;
 		}
 		if (imu_flag & 64) {
 			atom_setsym(list + 2, gensym("wld"));
@@ -207,11 +208,9 @@ void sbReceive_parse(t_sbReceive *x, t_uint8 *msg) {
 		}
 		if (imu_flag & 128) {
 			atom_setsym(list + 2, gensym("sta"));
-			atom_setfloat(list + 3, (float)(t_int16)(msg[index + 1] << 8 | msg[index + 2]) / 100.);
-			atom_setfloat(list + 4, (float)(t_int16)(msg[index + 3] << 8 | msg[index + 4]) / 100.);
-			atom_setfloat(list + 5, (float)(t_int16)(msg[index + 5] << 8 | msg[index + 6]) / 100.);
-			outlet_list(x->outlet, NULL, 6, &list);
-			index += 6;
+			atom_setlong(list + 3, (t_int16)(msg[index + 1] << 8 | msg[index + 2]));
+			outlet_list(x->outlet, NULL, 4, &list);
+			index += 2;
 		}
 		break;
 		}

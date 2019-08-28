@@ -105,7 +105,7 @@ void ext_main(void *r)
 
 	class_register(CLASS_BOX, c);
 	sbSend_class = c;
-	post("sb.send v0.3 - 12.05.2019");
+	post("sb.send v0.31 - 18.05.2019");
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -345,7 +345,7 @@ void sbSend_saveFactory(t_sbSend *x) {
 }
 
 void sbSend_saveGeneral(t_sbSend *x) {
-	sbSend_send(x, SAVE_FACTORY, 0, NULL);
+	sbSend_send(x, SAVE_GENERAL, 0, NULL);
 }
 
 //---------------------------------------------------------------------------------------
