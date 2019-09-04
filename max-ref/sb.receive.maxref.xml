@@ -58,7 +58,7 @@
 				Multicast group
 			</digest>
 			<description>
-				Set the requested mulicast address of the receiver. Address should be a valid IPv4 multicast group address. Default group is set to Smartballs default feedback multicast address: <m>239.0.0.51</m>.
+				Set the requested mulicast address of the receiver. Address should be a valid IPv4 multicast group address. Default group is set to Smartballs default feedback multicast address: <i>239.0.0.51</i>.
 			</description>
 		</objarg>
         <objarg name="port" optional="1" type="int">
@@ -66,7 +66,7 @@
                 Receiving port
             </digest>
             <description>
-				Set the receiving port of the receiver. Default port is set to Smartballs default UDP out port: <m>9000</m>
+				Set the receiving port of the receiver. Default port is set to Smartballs default UDP out port: <i>9000</i>
             </description>
         </objarg>
 	</objarglist>

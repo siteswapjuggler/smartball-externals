@@ -40,7 +40,7 @@
 				Destination address
 			</digest>
 			<description>
-				Set the destination address of this sender. Address could be either IPv4 or hostnames format. IPv4 address could be unicast, multicast or broadcast. Default address is set to Smartballs default multicast address: <m>239.0.0.50</m>.
+				Set the destination address of this sender. Address could be either IPv4 or hostnames format. IPv4 address could be unicast, multicast or broadcast. Default address is set to Smartballs default multicast address: <i>239.0.0.50</i>.
 			</description>
 		</objarg>
         <objarg name="port" optional="1" type="int">
@@ -48,7 +48,7 @@
                 Destination port
             </digest>
             <description>
-				Set the destination port of this sender. Default port is set to Smartballs default UDP in port: <m>8000</m>
+				Set the destination port of this sender. Default port is set to Smartballs default UDP in port: <i>8000</i>
             </description>
         </objarg>
 	</objarglist>
@@ -126,7 +126,7 @@
 			Ping Smartballs
             </digest>
             <description>
-			This method send a <m>ping</m> message to the connected Smartballs. Every reachable device will answer with a pong.
+			This method send a <i>ping</i> message to the connected Smartballs. Every reachable device will answer with a pong.
             </description>
         </method>
         <method name="reboot">
@@ -134,7 +134,7 @@
 			Reboot Smartballs
             </digest>
             <description>
-			This method send a <m>reboot</m> message to the connected Smartballs. Every reachable device will reboot. Unsaved parameters on each smartball will be lost. 
+			This method send a <i>reboot</i> message to the connected Smartballs. Every reachable device will reboot. Unsaved parameters on each smartball will be lost. 
 			<br/><br/><b>ATTENTION:</b> the first reboot after a firmware flashing doesn't work, you have to reboot the ball manually once first.
             </description>
         </method>
@@ -143,7 +143,15 @@
 			Save IMU settings
             </digest>
             <description>
-			This method send a <m>save imu</m> message to the connected Smartballs. Every reachable device will save its current IMU settings into the EEPROM memory. Those settings will be persistant over next power cycles. IMU settings include: IMU active flag, accelerometer range and gyroscope range.
+			This method send a <i>save imu</i> message to the connected Smartballs. Every reachable device will save its current IMU settings into the EEPROM memory. Those settings will be persistant over next power cycles. IMU settings include: IMU active flag, accelerometer range and gyroscope range.
+            </description>
+        </method>
+        <method name="defaultImu">
+            <digest>
+			Set default IMU settings
+            </digest>
+            <description>
+			This method send a <i>default imu</i> message to the connected Smartballs. Every reachable device will set its current IMU settings to the default values. IMU default settings are: IMU active flag for magnitude and state, accelerometer range to 16g and gyroscope range to 2000 dps.
             </description>
         </method>
         <method name="saveFactory">
@@ -151,7 +159,7 @@
 			Save factory settings
             </digest>
             <description>
-			This method send a <m>save factory</m> message to the connected Smartballs. Every reachable device will save its current factory settings into the EEPROM memory. Those settings will be persistant over next power cycles. Factory settings include: serial number, active device flag and battery scaling.
+			This method send a <i>save factory</i> message to the connected Smartballs. Every reachable device will save its current factory settings into the EEPROM memory. Those settings will be persistant over next power cycles. Factory settings include: serial number, active device flag and battery scaling.
 			<br/><br/><b>ATTENTION:</b> factory settings are set once in factory and should not be changed without a very good purpose.
             </description>
         </method>
@@ -160,7 +168,7 @@
 			Save general settings
             </digest>
             <description>
-			This method send a <m>save general</m> message to the connected Smartballs. Every reachable device will save its current factory settings into the EEPROM memory. Those settings will be persistant over next power cycles. General settings include: id number.
+			This method send a <i>save general</i> message to the connected Smartballs. Every reachable device will save its current factory settings into the EEPROM memory. Those settings will be persistant over next power cycles. General settings include: id number.
             </description>
         </method>
         <method name="ir">
@@ -171,7 +179,7 @@
 			Set infrared PWM
 			</digest>
             <description>
-			This method send a <m>ir</m> message to the connected Smartballs. Every reachable device will set a new PWM value for its infrared led output.
+			This method send a <i>ir</i> message to the connected Smartballs. Every reachable device will set a new PWM value for its infrared led output.
 			<br/><b>OPTIONAL:</b> infrared leds availability depends on your device electronic configuration.
             </description>
         </method>
@@ -183,7 +191,7 @@
 			Set vibration PWM
 			</digest>
             <description>
-			This method send a <m>vibe</m> message to the connected Smartballs. Every reachable device will set a new PWM value for its vibration motor output.
+			This method send a <i>vibe</i> message to the connected Smartballs. Every reachable device will set a new PWM value for its vibration motor output.
 			<br/><b>OPTIONAL:</b> vibration motor availability depends on your device electronic configuration.
             </description>
         </method>
@@ -195,7 +203,7 @@
 			Set master channel
 			</digest>
             <description>
-			This method send a <m>master</m> message to the connected Smartballs. Every reachable device will set a new master value for all colors output.
+			This method send a <i>master</i> message to the connected Smartballs. Every reachable device will set a new master value for all colors output.
             </description>
         </method>
 		<method name="strobe">
@@ -206,7 +214,7 @@
 			Set strobe effect interval
 			</digest>
             <description>
-			This method send a <m>strobe</m> message to the connected Smartballs. Every reachable device will set a new strobe effect interval value.
+			This method send a <i>strobe</i> message to the connected Smartballs. Every reachable device will set a new strobe effect interval value.
             </description>
         </method>
 		<method name="color">
@@ -217,7 +225,7 @@
 			Set colors
 			</digest>
             <description>
-			This method send a <m>color</m> message to the connected Smartballs. Every reachable device will change its colors according to the number of arguments. The method accept [0-255] integers or [0.-1.] floats.<br/>
+			This method send a <i>color</i> message to the connected Smartballs. Every reachable device will change its colors according to the number of arguments. The method accept [0-255] integers or [0.-1.] floats.<br/>
 			<br/><b>3 values:</b> 1 color mode, every leds on the ball take this color.
 			<br/><b>6 values:</b> 2 colors mode, both hemispheres take one color each.
 			<br/><b>9 values:</b> 3 colors mode, pairs of opposite leds take one color each.
@@ -232,7 +240,7 @@
 			Set strobe effect off-cycle colors
 			</digest>
             <description>
-			This method send a <m>background</m> message to the connected Smartballs. Every reachable device will change its strobe effect off-cycle colors according to the number of arguments. The method accept [0-255] integers or [0.-1.] floats. This message accept multicolor argument in the same way as the color message.
+			This method send a <i>background</i> message to the connected Smartballs. Every reachable device will change its strobe effect off-cycle colors according to the number of arguments. The method accept [0-255] integers or [0.-1.] floats. This message accept multicolor argument in the same way as the color message.
             </description>
         </method>
 		<method name="stream">
@@ -243,7 +251,7 @@
 			Set multiballs colors
 			</digest>
 			<description>
-			This method send a <m>stream</m> message to the connected Smartballs. Every reachable device will change its colors according to its serial number. The first argument defines the number of colors sent to each ball. Other arguments depends on the number of colors and the number of different color set you want to transmit. The method accept [0-255] integers or [0.-1.] floats.<br/>
+			This method send a <i>stream</i> message to the connected Smartballs. Every reachable device will change its colors according to its serial number. The first argument defines the number of colors sent to each ball. Other arguments depends on the number of colors and the number of different color set you want to transmit. The method accept [0-255] integers or [0.-1.] floats.<br/>
 			<br/><b>EXAMPLE #1:</b> 1 RGB1 RGB2 RGB3 - balls with (sn % 3) == 0 change to RGB1, balls with (sn % 3) == 1 change to RGB2, balls with (sn % 3) == 2 change to RGB3.
 			<br/><b>EXAMPLE #2:</b> 2 RGB1 RGB1' RGB2 RGB2' - balls with (sn % 2) == 0 change to 2 colors mode RGB1/RGB1', balls with (sn % 2) == 1 change to 2 colors mode RGB2/RGB2'.
 			<br/><b>EXAMPLE #3:</b> 3 RGB1 RGB1' RGB1" - every ball goes to 3 colors mode RGB1/RGB1'/RGB1". The effect is the same as a color message because every ball answer to (sn % 1) == 0.
@@ -257,7 +265,7 @@
 			Enable IMU sensors
 			</digest>
             <description>
-			This method send a <m>setImu</m> message to the connected Smartballs. Every reachable device will enable its own MPU9250 sensors feedbacks according to the sent flag.<br/>
+			This method send a <i>setImu</i> message to the connected Smartballs. Every reachable device will enable its own MPU9250 sensors feedbacks according to the sent flag.<br/>
 			<br/><b>bit 0:</b> enable accelerometer.
 			<br/><b>bit 1:</b> enable gyroscope.
 			<br/><b>bit 2:</b> enable magnetometer.
@@ -276,7 +284,7 @@
 			Set accelerometer fullrange scale
 			</digest>
             <description>
-			This method send a <m>accelerometer range</m> message to the connected Smartballs. Every reachable device will set its MPU9250 accelerometer fullscale range according to the sent value.<br/>
+			This method send a <i>accelerometer range</i> message to the connected Smartballs. Every reachable device will set its MPU9250 accelerometer fullscale range according to the sent value.<br/>
 			<br/><b>0:</b> -2g/+2g sensibility.
 			<br/><b>1:</b> -4g/+4g sensibility.
 			<br/><b>2:</b> -8g/+8g sensibility.
@@ -291,7 +299,7 @@
 			Set gyroscope fullrange scale
 			</digest>
             <description>
-			This method send a <m>gyroscope range</m> message to the connected Smartballs. Every reachable device will set its MPU9250 gyroscope fullscale range according to the sent value.<br/>
+			This method send a <i>gyroscope range</i> message to the connected Smartballs. Every reachable device will set its MPU9250 gyroscope fullscale range according to the sent value.<br/>
 			<br/><b>0:</b> -250dps/+250dps sensibility.
 			<br/><b>1:</b> -500dps/+500dps sensibility.
 			<br/><b>2:</b> -1000dps/+1000dps sensibility.
@@ -306,7 +314,7 @@
 			Set factory settings
 			</digest>
             <description>
-			This method send a <m>set factory</m> message to the connected Smartballs. Every reachable device will change its factory settings according to the sent values.<br/>
+			This method send a <i>set factory</i> message to the connected Smartballs. Every reachable device will change its factory settings according to the sent values.<br/>
 			<br/><b>argument 1:</b> serial number [0-65535].
 			<br/><b>argument 2:</b> device flag, 3 for device with RGB Leds + IMU, 15 for full options device.
 			<br/><b>argument 3:</b> battery scale [0.1-1024.] 
@@ -320,7 +328,7 @@
 			Set general settings
 			</digest>
             <description>
-			This method send a <m>set general</m> message to the connected Smartballs. Every reachable device will change its general settings according to the sent values.<br/>
+			This method send a <i>set general</i> message to the connected Smartballs. Every reachable device will change its general settings according to the sent values.<br/>
 			<br/><b>argument 1:</b> id number [0-65535].
             </description>
         </method>

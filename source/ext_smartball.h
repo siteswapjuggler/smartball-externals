@@ -58,6 +58,7 @@ enum sb_cmd {
 	SAVE_IMU	 = 0x31,
 	CMD_ACCRANGE = 0x32,
 	CMD_GYRRANGE = 0x33,
+	DEFAULT_IMU  = 0x34,
 	CMD_IRL      = 0x40,
 	CMD_MOT      = 0x50,
 	CMD_STB		 = 0x60,

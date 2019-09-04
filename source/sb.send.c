@@ -24,6 +24,7 @@ void ext_main(void *r)
 	class_addmethod(c, (method)sbSend_ping,		   "ping",		  0);
 	class_addmethod(c, (method)sbSend_reboot,	   "reboot",	  0);
 	class_addmethod(c, (method)sbSend_saveImu,	   "saveImu",	  0);
+	class_addmethod(c, (method)sbSend_defaultImu,  "defaultImu",  0);
 	class_addmethod(c, (method)sbSend_saveFactory, "saveFactory", 0);
 	class_addmethod(c, (method)sbSend_saveGeneral, "saveGeneral", 0);
 	
@@ -105,7 +106,7 @@ void ext_main(void *r)
 
 	class_register(CLASS_BOX, c);
 	sbSend_class = c;
-	post("sb.send v0.31 - 18.05.2019");
+	post("sb.send v0.32 - 04.09.2019");
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -338,6 +339,10 @@ void sbSend_reboot(t_sbSend *x) {
 
 void sbSend_saveImu(t_sbSend *x) {
 	sbSend_send(x, SAVE_IMU, 0, NULL);
+}
+
+void sbSend_defaultImu(t_sbSend *x) {
+	sbSend_send(x, DEFAULT_IMU, 0, NULL);
 }
 
 void sbSend_saveFactory(t_sbSend *x) {
