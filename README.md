@@ -14,3 +14,12 @@ All the technological development work made in the Smartball project is availabl
 ## MAX/MSP Externals
 - **sb.send:** send udp datagram to the balls, please open help and references for details.
 - **sb.receive:** receive udp datagram from the balls, please open help and references for details.
+
+## Linked repositories
+
+This repository refers directly to its following siblings : 
+
+- https://github.com/siteswapjuggler/smartball-firmware
+- https://github.com/siteswapjuggler/smartball-documents
+- https://github.com/siteswapjuggler/smartball-hardware
+- https://github.com/siteswapjuggler/smartball-imu
