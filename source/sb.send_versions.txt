@@ -1,0 +1,8 @@
+v0.3 - 12.05.2019
+
+Protocol v0.3
+Stream Attributes
+
+v0.31 - 18.05.2019
+
+saveGeneral bug corrected

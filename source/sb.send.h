@@ -70,7 +70,6 @@ void sbSend_send(t_sbSend*, enum sb_cmd, t_uint16, t_uint8*);
 void sbSend_ping(t_sbSend*);
 void sbSend_reboot(t_sbSend*);
 void sbSend_saveImu(t_sbSend*);
-void sbSend_defaultImu(t_sbSend*);
 void sbSend_saveFactory(t_sbSend*);
 void sbSend_saveGeneral(t_sbSend*);
 
