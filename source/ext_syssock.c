@@ -354,7 +354,7 @@ void syssock_nagle(t_syssocket sockfd, long val)
 {
 	const int on = 1;	
 	if (val == 0)
-		syssock_setsockopt( sockfd, IPPROTO_TCP, TCP_NODELAY, &on, sizeof(on) );
+		syssock_setsockopt( sockfd, IPPROTO_TCP, 0x01/*TCP_NODELAY*/, &on, sizeof(on) );
 	else if (val == 1)
 		syssock_setsockopt( sockfd, IPPROTO_TCP, 0, &on, sizeof(on) );
 }

@@ -243,8 +243,8 @@ void *sbSend_new(t_symbol *s, long argc, t_atom *argv)
 	memset(&x->addr, 0, sizeof(x->addr));
 	x->addr.sin_family = AF_INET;
 
-	boolean attr1 = argc > 0 ? atom_gettype(argv)   == A_SYM && atom_getsym(argv)->s_name[0]   == '@' : false;
-	boolean attr2 = argc > 1 ? atom_gettype(argv+1) == A_SYM && atom_getsym(argv+1)->s_name[0] == '@' : false;
+	Boolean attr1 = argc > 0 ? atom_gettype(argv)   == A_SYM && atom_getsym(argv)->s_name[0]   == '@' : false;
+	Boolean attr2 = argc > 1 ? atom_gettype(argv+1) == A_SYM && atom_getsym(argv+1)->s_name[0] == '@' : false;
 
 	// HANDLE ARGUMENTS
 	if (argc == 0 || attr1) {

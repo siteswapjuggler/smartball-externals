@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:/Users/siteswapjuggler/Dropbox/06. GITHUB/0. Max/max-smartball/source/ext_bytebuf.c">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/siteswapjuggler/Dropbox/06. GITHUB/0. Max/max-smartball/source/ext_smartball.h">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/siteswapjuggler/Dropbox/06. GITHUB/0. Max/max-smartball/source/ext_syssock.c">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/siteswapjuggler/Dropbox/06. GITHUB/0. Max/max-smartball/source/ext_syssock.h">
+   </FileRef>
+   <FileRef
+      location = "self:">
+   </FileRef>
+</Workspace>

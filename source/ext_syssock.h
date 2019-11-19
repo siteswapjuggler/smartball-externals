@@ -358,7 +358,7 @@ typedef void *(*t_fpv)(void); //pointer to void function
 typedef char *(*t_mp_in_addr)(struct in_addr x);
 typedef struct hostent *(*t_mp_hostent)(const char *c);
 // $rbs$ -- we need to use this to get the proper errno
-typedef int * (*__mygeterror_ptr)();
+typedef int * (*__mygeterror_ptr)(void);
 #endif //MAC_VERSION
 
 
@@ -394,7 +394,7 @@ typedef struct sockaddr_in t_sysaddr;
 
 //initialize the library.  must be called before any other syssock activity. 
 //returns zero if successful, errno if not.
-int syssock_init();
+int syssock_init(void);
 
 t_syssocket syssock_socket(int domain, int type, int protocol);
 int syssock_setsockopt(t_syssocket sockfd, int level, int option_name, const void *option_value, int option_len);
@@ -438,7 +438,7 @@ void syssock_setfamily(t_sysaddr *addr, u_char family);
 void syssock_setip(t_sysaddr *addr, in_addr_t ip);
 void syssock_setport(t_sysaddr *addr, u_short port);
 //returns the current errno
-int syssock_errno();
+int syssock_errno(void);
 
 float swapf32(float f);
 double swapf64(double f);

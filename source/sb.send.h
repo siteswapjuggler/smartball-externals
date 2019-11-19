@@ -106,14 +106,14 @@ void sbSend_updateStreamFlag(t_sbSend*);
 #define STREAM_LOOP_DEF		1
 #define STREAM_OFFSET_DEF	0
 
-t_max_err stream_offset_set(t_sbSend*, void*, long*, t_atom*);
-t_max_err stream_loop_set(t_sbSend*, void*, long*, t_atom*); 
-t_max_err stream_col1_set(t_sbSend*, void*, long*, t_atom*);
-t_max_err stream_col2_set(t_sbSend*, void*, long*, t_atom*);
-t_max_err stream_mst_set(t_sbSend*, void*, long*, t_atom*);
-t_max_err stream_stb_set(t_sbSend*, void*, long*, t_atom*);
-t_max_err stream_irl_set(t_sbSend*, void*, long*, t_atom*);
-t_max_err stream_mot_set(t_sbSend*, void*, long*, t_atom*);
+t_max_err stream_offset_set(t_sbSend *x, void *attr, long ac, t_atom *av);
+t_max_err stream_loop_set(t_sbSend *x, void *attr, long ac, t_atom *av); 
+t_max_err stream_col1_set(t_sbSend *x, void *attr, long ac, t_atom *av);
+t_max_err stream_col2_set(t_sbSend *x, void *attr, long ac, t_atom *av);
+t_max_err stream_mst_set(t_sbSend *x, void *attr, long ac, t_atom *av);
+t_max_err stream_stb_set(t_sbSend *x, void *attr, long ac, t_atom *av);
+t_max_err stream_irl_set(t_sbSend *x, void *attr, long ac, t_atom *av);
+t_max_err stream_mot_set(t_sbSend *x, void *attr, long ac, t_atom *av);
 
 
 #endif /* sb_send_h */
