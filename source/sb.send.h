@@ -37,6 +37,7 @@ typedef struct _sbSend {        // defines our object's internal variables for e
 	char stream_stb;
 	char stream_irl; 
 	char stream_mot;
+    char stream_gsc;
 	char stream_loop;
 	long stream_offset;
 
@@ -55,6 +56,7 @@ typedef struct _sbSend {        // defines our object's internal variables for e
 	char stream_stb_args;
 	char stream_irl_args;
 	char stream_mot_args;
+
 	t_uint16 stream_flag;
 } t_sbSend;
 
@@ -79,6 +81,9 @@ void sbSend_vibration(t_sbSend*, t_symbol*, long, t_atom*);
 void sbSend_color(t_sbSend*, t_symbol*, long, t_atom*, enum sb_cmd); 
 void sbSend_color1(t_sbSend*, t_symbol*, long, t_atom*);
 void sbSend_color2(t_sbSend*, t_symbol*, long, t_atom*);
+void sbSend_white(t_sbSend*, t_symbol*, long, t_atom*, enum sb_cmd);
+void sbSend_white1(t_sbSend*, t_symbol*, long, t_atom*);
+void sbSend_white2(t_sbSend*, t_symbol*, long, t_atom*);
 void sbSend_strobe(t_sbSend*, t_symbol*, long, t_atom*);
 void sbSend_master(t_sbSend*, t_symbol*, long, t_atom*);
 void sbSend_stream(t_sbSend*, t_symbol*, long, t_atom*);
@@ -102,6 +107,7 @@ void sbSend_updateStreamFlag(t_sbSend*);
 #define STREAM_STB_DEF		0
 #define STREAM_IRL_DEF		0
 #define STREAM_MOT_DEF		0
+#define STREAM_GSC_DEF      0
 
 #define STREAM_LOOP_DEF		1
 #define STREAM_OFFSET_DEF	0
@@ -114,6 +120,7 @@ t_max_err stream_mst_set(t_sbSend *x, void *attr, long ac, t_atom *av);
 t_max_err stream_stb_set(t_sbSend *x, void *attr, long ac, t_atom *av);
 t_max_err stream_irl_set(t_sbSend *x, void *attr, long ac, t_atom *av);
 t_max_err stream_mot_set(t_sbSend *x, void *attr, long ac, t_atom *av);
+t_max_err stream_gsc_set(t_sbSend *x, void *attr, long ac, t_atom *av);
 
 
 #endif /* sb_send_h */

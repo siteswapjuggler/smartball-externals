@@ -24,6 +24,7 @@
 #define STB_STREAM_BIT   7
 #define IRL_STREAM_BIT   8
 #define MOT_STREAM_BIT   9
+#define GSC_STREAM_BIT   10
 #define LOOP_STREAM_BIT	 15
 
 //---------------------------------------------------------------
@@ -54,6 +55,8 @@ enum sb_cmd {
 	CMD_COLOR1   = 0x20,
 	CMD_STREAM   = 0x21,
 	CMD_COLOR2	 = 0x22,
+    CMD_WHITE1   = 0x23,
+    CMD_WHITE2   = 0x24,
 	CMD_IMU      = 0x30,
 	SAVE_IMU	 = 0x31,
 	CMD_ACCRANGE = 0x32,

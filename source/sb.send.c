@@ -29,18 +29,20 @@ void ext_main(void *r)
 	class_addmethod(c, (method)sbSend_saveGeneral, "saveGeneral", 0);
 	
 	// ARGS MESSAGES METHODS
-	class_addmethod(c, (method)sbSend_infrared,    "ir",		 A_GIMME, 0);
-	class_addmethod(c, (method)sbSend_vibration,   "vibe",		 A_GIMME, 0);
-	class_addmethod(c, (method)sbSend_master,	   "master",	 A_GIMME, 0);
-	class_addmethod(c, (method)sbSend_strobe,	   "strobe",	 A_GIMME, 0);
-	class_addmethod(c, (method)sbSend_color1,	   "color",		 A_GIMME, 0);
-	class_addmethod(c, (method)sbSend_color2,	   "background", A_GIMME, 0);
-	class_addmethod(c, (method)sbSend_stream,	   "stream",	 A_GIMME, 0);
-	class_addmethod(c, (method)sbSend_setImu,	   "setImu",	 A_GIMME, 0);
-	class_addmethod(c, (method)sbSend_accRange,    "accRange",	 A_GIMME, 0);
-	class_addmethod(c, (method)sbSend_gyrRange,    "gyrRange",	 A_GIMME, 0);
-	class_addmethod(c, (method)sbSend_setFactory,  "setFactory", A_GIMME, 0);
-	class_addmethod(c, (method)sbSend_setGeneral,  "setGeneral", A_GIMME, 0);
+	class_addmethod(c, (method)sbSend_infrared,    "ir",		   A_GIMME, 0);
+	class_addmethod(c, (method)sbSend_vibration,   "vibe",		   A_GIMME, 0);
+	class_addmethod(c, (method)sbSend_master,	   "master",	   A_GIMME, 0);
+	class_addmethod(c, (method)sbSend_strobe,	   "strobe",	   A_GIMME, 0);
+	class_addmethod(c, (method)sbSend_color1,	   "color",		   A_GIMME, 0);
+	class_addmethod(c, (method)sbSend_color2,	   "background",   A_GIMME, 0);
+    class_addmethod(c, (method)sbSend_white1,      "gsColor",      A_GIMME, 0);
+    class_addmethod(c, (method)sbSend_white2,      "gsBackground", A_GIMME, 0);
+	class_addmethod(c, (method)sbSend_stream,	   "stream",	   A_GIMME, 0);
+	class_addmethod(c, (method)sbSend_setImu,	   "setImu",	   A_GIMME, 0);
+	class_addmethod(c, (method)sbSend_accRange,    "accRange",	   A_GIMME, 0);
+	class_addmethod(c, (method)sbSend_gyrRange,    "gyrRange",	   A_GIMME, 0);
+	class_addmethod(c, (method)sbSend_setFactory,  "setFactory",   A_GIMME, 0);
+	class_addmethod(c, (method)sbSend_setGeneral,  "setGeneral",   A_GIMME, 0);
 	
 	// ATTR CONFIGURATION
 
@@ -104,9 +106,16 @@ void ext_main(void *r)
 	CLASS_ATTR_STYLE_LABEL(c, "stream_irl", 0, "onoff", "Infrared");
 	CLASS_ATTR_ACCESSORS(c, "stream_irl", NULL, (method)stream_irl_set);
 
+    CLASS_ATTR_CHAR(c, "stream_gsc", 0, t_sbSend, stream_gsc);
+    CLASS_ATTR_SAVE(c, "stream_gsc", 1);
+    CLASS_ATTR_ORDER(c, "stream_gsc", 0, "90");
+    CLASS_ATTR_CATEGORY(c, "stream_gsc", 0, "Stream");
+    CLASS_ATTR_STYLE_LABEL(c, "stream_gsc", 0, "onoff", "Grayscale");
+    CLASS_ATTR_ACCESSORS(c, "stream_gsc", NULL, (method)stream_gsc_set);
+    
 	class_register(CLASS_BOX, c);
 	sbSend_class = c;
-	post("sb.send v0.32 - 04.09.2019");
+	post("sb.send v0.33 - 09.06.2020");
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -118,19 +127,19 @@ void sbSend_updateStreamFlag(t_sbSend *x)
 	x->stream_flag = (x->stream_col1 << COL1_STREAM_ADDR) | (x->stream_col2 << COL2_STREAM_ADDR);
 	x->stream_flag |= (x->stream_mst << MST_STREAM_BIT) | (x->stream_stb << STB_STREAM_BIT);
 	x->stream_flag |= (x->stream_mot << MOT_STREAM_BIT) | (x->stream_irl << IRL_STREAM_BIT);
-	x->stream_flag |= (x->stream_loop << LOOP_STREAM_BIT);
+	x->stream_flag |= (x->stream_loop << LOOP_STREAM_BIT) | (x->stream_gsc << GSC_STREAM_BIT);
 
 	x->stream_col1_addr = 0;
-	x->stream_col2_addr = x->stream_col1 * 3;
-	x->stream_mst_addr  = x->stream_col2_addr + x->stream_col2 * 3;
+    x->stream_col2_addr = x->stream_col1 * (x->stream_gsc ? 1 : 3);
+    x->stream_mst_addr  = x->stream_col2_addr + x->stream_col2 * (x->stream_gsc ? 1 : 3);
 	x->stream_stb_addr  = x->stream_mst_addr  + x->stream_mst  * 2;
 	x->stream_irl_addr  = x->stream_stb_addr  + x->stream_stb  * 2;
 	x->stream_mot_addr  = x->stream_irl_addr  + x->stream_irl  * 2;
 	x->stream_bytes     = x->stream_mot_addr  + x->stream_mot  * 2;
 
 	x->stream_col1_args = 0;
-	x->stream_col2_args = x->stream_col1 * 3;
-	x->stream_mst_args = x->stream_col2_args + x->stream_col2 * 3;
+	x->stream_col2_args = x->stream_col1 * (x->stream_gsc ? 1 : 3);
+	x->stream_mst_args = x->stream_col2_args + x->stream_col2 * (x->stream_gsc ? 1 : 3);
 	x->stream_stb_args = x->stream_mst_args + x->stream_mst;
 	x->stream_irl_args = x->stream_stb_args + x->stream_stb;
 	x->stream_mot_args = x->stream_irl_args + x->stream_irl;
@@ -232,6 +241,14 @@ t_max_err stream_irl_set(t_sbSend *x, void *attr, long ac, t_atom *av)
 	return MAX_ERR_NONE;
 }
 
+t_max_err stream_gsc_set(t_sbSend *x, void *attr, long ac, t_atom *av)
+{
+    if (ac&&av) x->stream_gsc = atom_getcharfix(av) > 0;
+    else        x->stream_gsc = STREAM_GSC_DEF;
+    sbSend_updateStreamFlag(x);
+    return MAX_ERR_NONE;
+}
+
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 // CONSTRUCTION, DESTRUCTION
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -243,8 +260,8 @@ void *sbSend_new(t_symbol *s, long argc, t_atom *argv)
 	memset(&x->addr, 0, sizeof(x->addr));
 	x->addr.sin_family = AF_INET;
 
-	Boolean attr1 = argc > 0 ? atom_gettype(argv)   == A_SYM && atom_getsym(argv)->s_name[0]   == '@' : false;
-	Boolean attr2 = argc > 1 ? atom_gettype(argv+1) == A_SYM && atom_getsym(argv+1)->s_name[0] == '@' : false;
+	bool attr1 = argc > 0 ? atom_gettype(argv)   == A_SYM && atom_getsym(argv)->s_name[0]   == '@' : false;
+	bool attr2 = argc > 1 ? atom_gettype(argv+1) == A_SYM && atom_getsym(argv+1)->s_name[0] == '@' : false;
 
 	// HANDLE ARGUMENTS
 	if (argc == 0 || attr1) {
@@ -464,6 +481,56 @@ END:
 
 //---------------------------------------------------------------------------------------
 
+void sbSend_white1(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
+{
+    sbSend_white(x, s, argc, argv, CMD_WHITE1);
+}
+
+void sbSend_white2(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
+{
+    sbSend_white(x, s, argc, argv, CMD_WHITE2);
+}
+
+void sbSend_white(t_sbSend *x, t_symbol *s, long argc, t_atom *argv, enum sb_cmd c)
+{
+    long value;
+    t_atom *ap;
+    t_uint8 *data;
+    t_uint16 i;
+    t_uint16 l = (t_uint16)argc;
+    
+    data = (t_uint8 *)sysmem_newptr(sizeof(t_uint8)*l);
+    if (data == NULL) {
+        object_error((t_object*)x,"Cannot allocate memory for color data");
+        goto END;
+    }
+    
+    for (i = 0, ap = argv; i < l; i++, ap++) {
+        switch (atom_gettype(ap)) {
+            case A_LONG:
+                value = atom_getlong(ap);
+                break;
+            case A_FLOAT:
+                value = (long)atom_getfloat(ap)*255.;
+                break;
+            default:
+                value = 0;
+                break;
+        }
+        value = value < 0 ? 0 : value;
+        value = value > 255 ? 255 : value;
+        data[i] = (t_uint8)value;
+    }
+    
+    sbSend_send(x, c, l, data);
+    
+END:
+    sysmem_freeptr(data);
+}
+
+
+//---------------------------------------------------------------------------------------
+
 void sbSend_stream(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
 {
 	long value;
@@ -471,7 +538,7 @@ void sbSend_stream(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
 	t_uint8 *data;
 
 	if (argc > 0 && argc % x->stream_args != 0) {
-		object_warn((t_object*)x, "According to your parameters arguments number must be greater than 0 and a multiple of %d", x->stream_args);
+		//object_warn((t_object*)x, "According to your parameters arguments number must be greater than 0 and a multiple of %d", x->stream_args); // TO CHANGE
 		return;
 	}
 
@@ -492,7 +559,7 @@ void sbSend_stream(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
 	if (x->stream_col1 > 0) {
 		ap = argv + x->stream_col1_args;
 		for (t_uint16 i = 0; i < n; i++) {
-			for (t_uint16 c = 0; c < 3 * x->stream_col1; c++) {
+			for (t_uint16 c = 0; c < (x->stream_gsc ? 1 : 3) * x->stream_col1; c++) {
 				switch (atom_gettype(ap+c)) {
 				case A_LONG:
 					value = atom_getlong(ap+c);
@@ -515,7 +582,7 @@ void sbSend_stream(t_sbSend *x, t_symbol *s, long argc, t_atom *argv)
 	if (x->stream_col2 > 0) {
 		ap = argv + x->stream_col2_args;
 		for (t_uint16 i = 0; i < n; i++) {
-			for (t_uint16 c = 0; c < 3 * x->stream_col2; c++) {
+			for (t_uint16 c = 0; c < (x->stream_gsc ? 1 : 3) * x->stream_col2; c++) {
 				switch (atom_gettype(ap + c)) {
 				case A_LONG:
 					value = atom_getlong(ap + c);

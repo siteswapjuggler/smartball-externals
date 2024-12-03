@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 0,
+			"minor" : 3,
+			"revision" : 1,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 339.0, 283.0, 596.0, 499.0 ],
+		"rect" : [ 100.0, 100.0, 596.0, 499.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-4",
@@ -49,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 0,
+							"minor" : 3,
+							"revision" : 1,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 596.0, 473.0 ],
+						"rect" : [ 100.0, 126.0, 596.0, 473.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"bubble" : 1,
@@ -182,6 +184,7 @@
 									"saved_object_attributes" : 									{
 										"stream_col1" : 1,
 										"stream_col2" : 0,
+										"stream_gsc" : 0,
 										"stream_irl" : 0,
 										"stream_loop" : 1,
 										"stream_mot" : 0,
@@ -269,6 +272,7 @@
 									"saved_object_attributes" : 									{
 										"stream_col1" : 1,
 										"stream_col2" : 0,
+										"stream_gsc" : 0,
 										"stream_irl" : 0,
 										"stream_loop" : 1,
 										"stream_mot" : 0,
@@ -352,8 +356,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 0,
+							"minor" : 3,
+							"revision" : 1,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -387,6 +391,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ],
 						"bgfillcolor_type" : "gradient",
@@ -418,8 +423,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 0,
+							"minor" : 3,
+							"revision" : 1,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -453,6 +458,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"bgcolor" : [ 0.439216, 0.74902, 0.254902, 1.0 ],
@@ -494,8 +500,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 8,
-											"minor" : 1,
-											"revision" : 0,
+											"minor" : 3,
+											"revision" : 1,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -528,6 +534,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-24",
@@ -651,6 +658,7 @@
 									"saved_object_attributes" : 									{
 										"stream_col1" : 1,
 										"stream_col2" : 0,
+										"stream_gsc" : 0,
 										"stream_irl" : 0,
 										"stream_loop" : 1,
 										"stream_mot" : 0,
@@ -766,8 +774,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 8,
-											"minor" : 1,
-											"revision" : 0,
+											"minor" : 3,
+											"revision" : 1,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -800,6 +808,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-24",
@@ -834,7 +843,8 @@
 													"outlettype" : [ "", "", "", "" ],
 													"patching_rect" : [ 196.5, 100.0, 91.0, 22.0 ],
 													"saved_object_attributes" : 													{
-														"embed" : 1
+														"embed" : 1,
+														"precision" : 6
 													}
 ,
 													"text" : "coll @embed 1"
@@ -1342,8 +1352,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 0,
+							"minor" : 3,
+							"revision" : 1,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1377,6 +1387,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"attr" : "stream_offset",
@@ -1385,6 +1396,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
+									"parameter_enable" : 0,
 									"patching_rect" : [ 180.745789000000002, 348.0, 150.0, 22.0 ]
 								}
 
@@ -1397,6 +1409,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
+									"parameter_enable" : 0,
 									"patching_rect" : [ 51.0, 347.0, 124.0, 22.0 ]
 								}
 
@@ -1409,6 +1422,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
+									"parameter_enable" : 0,
 									"patching_rect" : [ 336.909087999999997, 348.0, 136.0, 22.0 ]
 								}
 
@@ -1645,6 +1659,7 @@
 									"saved_object_attributes" : 									{
 										"stream_col1" : 2,
 										"stream_col2" : 0,
+										"stream_gsc" : 0,
 										"stream_irl" : 0,
 										"stream_loop" : 1,
 										"stream_mot" : 0,
@@ -1883,8 +1898,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 0,
+							"minor" : 3,
+							"revision" : 1,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1918,6 +1933,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-2",
@@ -2223,6 +2239,7 @@
 									"saved_object_attributes" : 									{
 										"stream_col1" : 1,
 										"stream_col2" : 0,
+										"stream_gsc" : 0,
 										"stream_irl" : 0,
 										"stream_loop" : 1,
 										"stream_mot" : 0,
@@ -2355,14 +2372,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 0,
+							"minor" : 3,
+							"revision" : 1,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 339.0, 309.0, 596.0, 473.0 ],
+						"rect" : [ 0.0, 26.0, 596.0, 473.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2390,6 +2407,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-9",
@@ -2523,6 +2541,7 @@
 									"saved_object_attributes" : 									{
 										"stream_col1" : 1,
 										"stream_col2" : 0,
+										"stream_gsc" : 0,
 										"stream_irl" : 0,
 										"stream_loop" : 1,
 										"stream_mot" : 0,
@@ -2932,8 +2951,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 0,
+							"minor" : 3,
+							"revision" : 1,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2967,6 +2986,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"bubble" : 1,
@@ -3063,6 +3083,7 @@
 									"saved_object_attributes" : 									{
 										"stream_col1" : 1,
 										"stream_col2" : 0,
+										"stream_gsc" : 0,
 										"stream_irl" : 0,
 										"stream_loop" : 1,
 										"stream_mot" : 0,
@@ -3150,6 +3171,7 @@
 									"saved_object_attributes" : 									{
 										"stream_col1" : 1,
 										"stream_col2" : 0,
+										"stream_gsc" : 0,
 										"stream_irl" : 0,
 										"stream_loop" : 1,
 										"stream_mot" : 0,
